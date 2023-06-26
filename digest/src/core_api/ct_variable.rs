@@ -28,8 +28,10 @@ where
     OutSize: ArrayLength<u8> + IsLessOrEqual<T::OutputSize>,
     LeEq<OutSize, T::OutputSize>: NonZero,
 {
-    inner: T,
-    _out: PhantomData<(OutSize, O)>,
+    /// Wrapped VariableOutputCore
+    pub inner: T,
+    /// Phantom data holding hash static properties
+    pub _out: PhantomData<(OutSize, O)>,
 }
 
 impl<T, OutSize, O> HashMarker for CtVariableCoreWrapper<T, OutSize, O>
